@@ -2,6 +2,9 @@
 
 int main(int argc, char *argv[])
 {
-    say_hello("world");
+    void (*hello)(const char *);
+    hello = &say_hello;
+
+    (*hello)("pointer");
     return 0;
 }
