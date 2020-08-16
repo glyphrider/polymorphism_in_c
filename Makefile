@@ -1,5 +1,5 @@
 EXE=demo
-OBJS=main.o
+OBJS=main.o hello.o
 
 $(EXE) : $(OBJS)
 	$(CC) $(LDFLAGS) -o $@ $^
