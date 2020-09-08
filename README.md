@@ -27,3 +27,9 @@ Then we can invoke the function pointer by dereferencing it, as we would with po
 ```
 (*hello)("pointer");
 ```
+
+# Polymorphism (Rudimentary)
+
+The project creates two shared objects (so files), which can be dynamically loaded. Each one exports a different implementation of the say_hello function. Using the commandline arguments (argc, argv), you can specify any arbitrary shared object to load, the program will attempt to map the function pointer to a say_hello export and invoke that function.
+
+This new approach requires the libdl (dyanamic loading) and the dlfcn.h (dyanamic loaded functions) header file when building demo from main.c. The recipies for building the shared objects are a little cryptic, as the `-soname` option needs to be passed to the linker (via `-Wl`) with the value of the shared object's name; this results in the [potentially] confusing `-Wl,-soname,$@` flag when generating the shared object. Additionally, the `-shared` flag is needed at link time to let the linker know we want a shared object and not an executable.
