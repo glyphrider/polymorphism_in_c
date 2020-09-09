@@ -8,11 +8,13 @@ int main(int argc, char *argv[])
 
   void (*hello)(const char *);
   void *lib = dlopen(libname,RTLD_LAZY);
+
   if(lib) {
     hello = dlsym(lib,SYM_NAME);
     if(hello)
       (*hello)("pointer");
     dlclose(lib);
   }
+
   return 0;
 }
